@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>画像選択</title>
+    <style>
+        body {
+            text-align: center; /* 中央揃え */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .hidden { 
+            display: none; 
+        }
+        #currentImage {
+            height: 800px; /* 高さを800pxに固定 */
+            width: auto; /* 幅はアスペクト比に基づいて自動調整 */
+            max-width: 100%; /* 画面幅に応じてサイズを調整 */
+        }
+        #paginationArea {
+            margin-top: 10px; /* ページネーションエリアに上余白を追加 */
+            display: flex; /* Flexboxを使って要素を整列 */
+            justify-content: center; /* 水平方向に中央揃え */
+            align-items: center; /* 垂直方向に中央揃え */
+        }
+        #pageNumber {
+            font-size: 24px; /* ページ番号のフォントサイズを大きくする */
+            font-weight: bold;
+            margin: 0 20px; /* ボタンとの間隔を設定 */
+        }
+        button {
+            padding: 10px 20px; /* ボタンの内側の余白を設定 */
+            font-size: 18px; /* ボタンのフォントサイズを大きくする */
+            cursor: pointer; /* ホバー時にカーソルをポインタにする */
+            margin: 0 10px; /* ボタン間の余白を設定 */
+        }
+    </style>
+</head>
+<body>
+    <div id="imageArea">
+        <img id="currentImage" src="" alt="画像">
+    </div>
+    <div id="paginationArea">
+        <button id="prevButton">前へ</button>
+        <span id="pageNumber">1</span>
+        <button id="nextButton">次へ</button>
+    </div>
+    <div id="endMessage" class="hidden">
+        ありがとうございました。これで実験は終わりです。
+    </div>
+
+    <script>
+        // 画像ファイルのパスを配列で定義
+        const images = [];
+        const folders = ['random_select', 'vgg', 'recommend'];
+        const numImages = 20; // 各フォルダからの画像数
+
+        // 各フォルダから画像を順番に追加
+        for (let i = 1; i <= numImages; i++) {
+            folders.forEach(folder => {
+                images.push(`picture/${folder}/image${i}.jpg`);
+            });
+        }
+
+        let currentIndex = 0; // 現在の画像インデックス
+        const totalImages = images.length; // 画像の総数
+
+        // 画像を表示する関数
+        function showImage() {
+            if (currentIndex < totalImages && currentIndex >= 0) {
+                document.getElementById('currentImage').src = images[currentIndex];
+                document.getElementById('pageNumber').innerText = currentIndex + 1;
+                document.getElementById('imageArea').classList.remove('hidden');
+                document.getElementById('paginationArea').classList.remove('hidden');
+            } else if (currentIndex >= totalImages) {
+                document.getElementById('imageArea').classList.add('hidden');
+                document.getElementById('paginationArea').classList.add('hidden');
+                document.getElementById('endMessage').classList.remove('hidden');
+            } else {
+                // インデックスが0未満になった場合
+                currentIndex = 0; // インデックスを0にリセット
+                showImage(); // 最初の画像を再表示
+            }
+        }
+        // 初期画像を表示
+        showImage();
+
+        // 「次へ」ボタンのクリックイベント
+        document.getElementById('nextButton').addEventListener('click', () => {
+currentIndex++;
+showImage();
+});
+
+    // 「前へ」ボタンのクリックイベント
+    document.getElementById('prevButton').addEventListener('click', () => {
+        currentIndex--;
+        showImage();
+    });
+</script>
+</body>
+</html>
