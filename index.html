@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>画像選択</title>
+    <title>画像表示実験</title>
     <style>
         body {
             text-align: center; /* 中央揃え */
@@ -50,17 +50,68 @@
     </div>
 
     <script>
-        // 画像ファイルのパスを配列で定義
-        const images = [];
-        const folders = ['random_select', 'vgg', 'recommend'];
-        const numImages = 20; // 各フォルダからの画像数
-
-        // 各フォルダから画像を順番に追加
-        for (let i = 1; i <= numImages; i++) {
-            folders.forEach(folder => {
-                images.push(`picture/${folder}/image${i}.jpg`);
-            });
-        }
+        const images = [
+    'picture/vgg/image15.jpg',
+    'picture/recommend/image17.jpg',
+    'picture/recommend/image10.jpg',
+    'picture/recommend/image4.jpg',
+    'picture/vgg/image14.jpg',
+    'picture/recommend/image6.jpg',
+    'picture/vgg/image6.jpg',
+    'picture/recommend/image5.jpg',
+    'picture/recommend/image16.jpg',
+    'picture/random_select/image13.jpg',
+    'picture/recommend/image9.jpg',
+    'picture/vgg/image8.jpg',
+    'picture/random_select/image12.jpg',
+    'picture/recommend/image19.jpg',
+    'picture/random_select/image4.jpg',
+    'picture/recommend/image3.jpg',
+    'picture/random_select/image11.jpg',
+    'picture/random_select/image5.jpg',
+    'picture/vgg/image2.jpg',
+    'picture/random_select/image16.jpg',
+    'picture/random_select/image15.jpg',
+    'picture/recommend/image20.jpg',
+    'picture/vgg/image1.jpg',
+    'picture/recommend/image13.jpg',
+    'picture/vgg/image17.jpg',
+    'picture/vgg/image5.jpg',
+    'picture/vgg/image7.jpg',
+    'picture/recommend/image11.jpg',
+    'picture/random_select/image9.jpg',
+    'picture/vgg/image10.jpg',
+    'picture/random_select/image6.jpg',
+    'picture/vgg/image16.jpg',
+    'picture/recommend/image12.jpg',
+    'picture/recommend/image2.jpg',
+    'picture/recommend/image18.jpg',
+    'picture/recommend/image15.jpg',
+    'picture/vgg/image13.jpg',
+    'picture/random_select/image19.jpg',
+    'picture/vgg/image12.jpg',
+    'picture/random_select/image10.jpg',
+    'picture/random_select/image14.jpg',
+    'picture/vgg/image9.jpg',
+    'picture/random_select/image7.jpg',
+    'picture/vgg/image11.jpg',
+    'picture/random_select/image3.jpg',
+    'picture/vgg/image20.jpg',
+    'picture/random_select/image17.jpg',
+    'picture/random_select/image18.jpg',
+    'picture/random_select/image8.jpg',
+    'picture/random_select/image1.jpg',
+    'picture/vgg/image4.jpg',
+    'picture/vgg/image19.jpg',
+    'picture/recommend/image1.jpg',
+    'picture/vgg/image18.jpg',
+    'picture/recommend/image14.jpg',
+    'picture/recommend/image8.jpg',
+    'picture/random_select/image2.jpg',
+    'picture/vgg/image3.jpg',
+    'picture/random_select/image20.jpg',
+    'picture/recommend/image7.jpg'
+];
 
         let currentIndex = 0; // 現在の画像インデックス
         const totalImages = images.length; // 画像の総数
